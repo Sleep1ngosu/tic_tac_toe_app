@@ -4,6 +4,8 @@ import {
 	SET_FIELD,
 	SET_SYMBOL,
 	SET_WINNER,
+	CLEAR_GAME,
+	SET_DRAW,
 } from './types'
 
 export const setIndex = (index) => async (dispatch) => {
@@ -24,4 +26,12 @@ export const setSymbol = (symbol) => async (dispatch) => {
 
 export const setWinner = (winner) => async (dispatch) => {
 	dispatch({ type: SET_WINNER, payload: winner })
+}
+
+export const clearGame = () => async (dispatch) => {
+	dispatch({ type: CLEAR_GAME })
+}
+
+export const setDraw = () => async (dispatch) => {
+	dispatch({ type: SET_DRAW })
 }

@@ -1,5 +1,11 @@
 import axios from 'axios'
-import { SET_JOINED, ERROR_ALERT, SET_ROOM, CLEAR_ROOM } from './types'
+import {
+	SET_JOINED,
+	ERROR_ALERT,
+	SET_ROOM,
+	CLEAR_ROOM,
+	CLEAR_GAME,
+} from './types'
 import { loading } from './auth'
 
 export const setJoined = (id) => async (dispatch) => {

@@ -4,7 +4,7 @@
 	height: 8rem;
 	width: 100%;
 	border-bottom: 0.2rem solid #888888;
-	background-color: rgb(182, 159, 159);
+	background-color: #e4e4e4;
 	cursor: default;
 }
 
@@ -27,13 +27,13 @@
 		}
 		&__host {
 			align-items: flex-end;
-			color: rgb(68, 54, 54);
+			color: #0d1821;
 			font-weight: bold;
 		}
 
 		&__username {
 			align-items: center;
-			color: rgb(215, 255, 163);
+			color: #326273;
 		}
 	}
 
@@ -54,13 +54,13 @@
 
 		&__text {
 			align-items: flex-end;
-			color: rgb(68, 54, 54);
+			color: #0d1821;
 			font-weight: bold;
 		}
 
 		&__count {
 			align-items: center;
-			color: rgb(215, 255, 163);
+			color: #326273;
 		}
 	}
 
@@ -82,13 +82,13 @@
 
 		&__text {
 			align-items: flex-end;
-			color: rgb(68, 54, 54);
+			color: #0d1821;
 			font-weight: bold;
 		}
 
 		&__status {
 			align-items: center;
-			color: rgb(215, 255, 163);
+			color: #326273;
 		}
 	}
 
@@ -106,7 +106,7 @@
 			padding-left: 1rem;
 			padding-right: 1rem;
 			font-weight: bold;
-			color: rgb(68, 54, 54);
+			color: #0d1821;
 		}
 
 		&__tags {
@@ -129,13 +129,13 @@
 			border: none;
 			color: #ffffff;
 			border-radius: 2rem;
-			background-color: #d168c8;
+			background-color: #776e77;
 			transition: 0.3s;
 			cursor: pointer;
 
 			&:hover {
 				transition: 0.3s;
-				background-color: #a7449e;
+				background-color: #484349;
 			}
 		}
 	}

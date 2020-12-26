@@ -4,6 +4,8 @@ import {
 	SET_FIELD,
 	SET_SYMBOL,
 	SET_WINNER,
+	CLEAR_GAME,
+	SET_DRAW,
 } from '../actions/types'
 
 const initialState = {
@@ -12,6 +14,7 @@ const initialState = {
 	field: '',
 	symbol: '',
 	winner: '',
+	draw: false,
 }
 
 export default (state = initialState, action) => {
@@ -44,6 +47,22 @@ export default (state = initialState, action) => {
 			return {
 				...state,
 				winner: action.payload,
+			}
+		}
+		case CLEAR_GAME: {
+			return {
+				index: '',
+				active: '',
+				field: '',
+				symbol: '',
+				winner: '',
+				draw: false,
+			}
+		}
+		case SET_DRAW: {
+			return {
+				...state,
+				draw: true,
 			}
 		}
 		default:

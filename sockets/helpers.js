@@ -49,4 +49,15 @@ const isWinner = (array) => {
 	return null
 }
 
-module.exports = { addUser, getUsersInRoom, getUser, removeUser, isWinner }
+const isDraw = (array) => {
+	if (array.indexOf('') === -1) return true
+	return false
+}
+module.exports = {
+	addUser,
+	getUsersInRoom,
+	getUser,
+	removeUser,
+	isWinner,
+	isDraw,
+}

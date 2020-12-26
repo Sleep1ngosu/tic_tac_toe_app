@@ -158,23 +158,6 @@ const Lobby = (props) => {
 						<span className="lobby__header__username__name">
 							user: {props.username}
 						</span>
-						<div className="lobby__header__search">
-							{/* <input
-								className="lobby__header__search__input"
-								type="text"
-								placeholder="search by tags"
-							></input> */}
-							{/* <TagsInput
-								value={tags}
-								onChange={tagsOnChange}
-								maxTags={5}
-								onlyUnique={true}
-								className="lobby__header__search__input"
-							/> */}
-							{/* <button className="lobby__header__search__button">
-								search
-							</button> */}
-						</div>
 						<button
 							onClick={props.logout}
 							className="lobby__header__username__logout"

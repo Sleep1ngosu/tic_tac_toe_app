@@ -20,6 +20,8 @@ export const SET_INDEX = 'SET_INDEX'
 export const SET_FIELD = 'SET_FIELD'
 export const SET_SYMBOL = 'SET_SYMBOL'
 export const SET_WINNER = 'SET_WINNER'
+export const CLEAR_GAME = 'CLEAR_GAME'
+export const SET_DRAW = 'SET_DRAW'
 
 //blocker
 export const SET_BLOCKER = 'SET_BLOCKER'

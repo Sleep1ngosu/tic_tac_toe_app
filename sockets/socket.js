@@ -8,6 +8,7 @@ const {
 	removeUser,
 	getUser,
 	isWinner,
+	isDraw,
 } = require('./helpers')
 
 const socket = async (io) => {
@@ -22,7 +23,6 @@ const socket = async (io) => {
 			} else {
 				socket.join(object.id)
 				const user = addUser(object.username, object.id)
-				console.log(user)
 				users = getUsersInRoom(object.id)
 				io.to(object.id).emit('getusers', users)
 				let active = Math.round(Math.random())
@@ -33,14 +33,17 @@ const socket = async (io) => {
 		socket.on('joinChannel', (id) => {
 			socket.join(id)
 		})
-		socket.on('update', ({ array, index, active, id, name }) => {
-			console.log(id)
+		socket.on('update', ({ array, active, id, name }) => {
 			let isWin = isWinner(array)
-			console.log(isWin)
 			if (isWin) {
 				io.to(id).emit('getField', array)
 				io.to(id).emit('winner', name)
 			} else {
+				let isdraw = isDraw(array)
+				if (isdraw) {
+					io.to(id).emit('getField', array)
+					io.to(id).emit('draw')
+				}
 				let newActive
 				active === 1 ? (newActive = 0) : (newActive = 1)
 				io.to(id).emit('getActive', newActive)
@@ -48,7 +51,14 @@ const socket = async (io) => {
 			}
 		})
 
-		socket.on('disconnect', () => {})
+		socket.on('dsc', (id, username) => {
+			removeUser(username)
+			const users = getUsersInRoom(id)
+			io.to(id).emit('getusers', users)
+			io.to(id).emit('getField', Array(9).fill(''))
+			io.to(id).emit('winner', '')
+			io.to(id).emit('clearGame')
+		})
 
 		let rooms = await Room.find({})
 		io.emit('getRooms', rooms)

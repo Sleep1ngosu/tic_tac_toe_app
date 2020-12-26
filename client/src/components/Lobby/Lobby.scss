@@ -23,7 +23,7 @@
 		align-items: center;
 		width: 100%;
 		height: 100%;
-		background-color: rgb(189, 189, 189);
+		background-color: #85c7de;
 		border: none;
 		border-radius: 2rem;
 	}
@@ -42,38 +42,7 @@
 		flex-direction: column;
 		height: 10rem;
 		border-bottom: 0.1rem solid black;
-		background-color: rgb(167, 245, 255);
-
-		&__search {
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			height: 100%;
-			width: 10rem;
-			font-size: 0.5rem;
-
-			&__input {
-				height: 3rem;
-				min-width: 40rem;
-				outline: none;
-				border: none;
-				border-radius: 1rem;
-				padding-left: 1rem;
-				background-color: red;
-			}
-
-			&__button {
-				display: flex;
-				justify-content: center;
-				align-items: center;
-				height: 2.5rem;
-				border: none;
-				padding: 1rem;
-				border-radius: 1rem;
-				cursor: pointer;
-				margin-left: 1rem;
-			}
-		}
+		background-color: #aed1e6;
 
 		&__username {
 			display: flex;
@@ -89,7 +58,7 @@
 
 			&__name {
 				padding-left: 2rem;
-				color: blue;
+				color: #176087;
 			}
 
 			&__logout {
@@ -102,12 +71,13 @@
 				border-radius: 1rem;
 				cursor: pointer;
 				outline: none;
-				background-color: rgb(44, 240, 174);
+				background-color: #cfe8ef;
 				transition: 0.3s;
+				color: #176087;
 
 				&:hover {
 					transition: 0.3s;
-					background-color: rgb(8, 168, 115);
+					background-color: #99aeb3;
 				}
 			}
 		}
@@ -121,17 +91,18 @@
 				width: 20rem;
 				height: 4rem;
 				border: none;
-				background-color: rgb(250, 141, 141);
+				background-color: #cfe8ef;
 				border-radius: 2rem;
 				cursor: pointer;
 				outline: none;
 				font-size: 2.5rem;
 				letter-spacing: 0.1rem;
 				transition: 0.3s;
+				color: #176087;
 
 				&:hover {
 					transition: 0.3s;
-					background-color: rgb(255, 73, 73);
+					background-color: #99aeb3;
 				}
 			}
 		}
