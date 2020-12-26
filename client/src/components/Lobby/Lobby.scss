@@ -1,0 +1,89 @@
+.lobby__wrapper {
+	height: 85rem;
+	width: 70rem;
+	border: 0.1rem solid black;
+	margin: 0 auto;
+	// padding-top: 5rem;
+	z-index: 2;
+}
+
+.lobby {
+	&__header {
+		display: flex;
+		flex-direction: column;
+		height: 10rem;
+		border-bottom: 0.1rem solid black;
+		background-color: rgb(167, 245, 255);
+
+		&__username {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			height: 4rem;
+			border-bottom: 0.1rem solid black;
+
+			&__name,
+			&__logout {
+				font-size: 2rem;
+			}
+
+			&__name {
+				padding-left: 2rem;
+				color: blue;
+			}
+
+			&__logout {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				width: 10rem;
+				margin-right: 2rem;
+				border: none;
+				border-radius: 1rem;
+				cursor: pointer;
+				outline: none;
+				background-color: rgb(44, 240, 174);
+				transition: 0.3s;
+
+				&:hover {
+					transition: 0.3s;
+					background-color: rgb(8, 168, 115);
+				}
+			}
+		}
+
+		&__newgame {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			height: 6rem;
+			&__button {
+				width: 20rem;
+				height: 4rem;
+				border: none;
+				background-color: rgb(250, 141, 141);
+				border-radius: 2rem;
+				cursor: pointer;
+				outline: none;
+				font-size: 2.5rem;
+				letter-spacing: 0.1rem;
+				transition: 0.3s;
+
+				&:hover {
+					transition: 0.3s;
+					background-color: rgb(255, 73, 73);
+				}
+			}
+		}
+	}
+}
+
+.blocker {
+	position: absolute;
+	left: 0;
+	top: 0;
+	height: 100%;
+	width: 100%;
+	z-index: 1;
+	background-color: rgba(48, 48, 48, 0.6);
+}

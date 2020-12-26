@@ -1,0 +1,16 @@
+.square {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 2rem;
+	width: 10rem;
+	height: 10rem;
+	cursor: pointer;
+
+	border: 0.1rem solid gray;
+	border-radius: 0.5rem;
+
+	&:hover {
+		background-color: rgb(255, 147, 255);
+	}
+}

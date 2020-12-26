@@ -1,0 +1,26 @@
+.Alert__wrapper {
+	position: absolute;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 80rem;
+	height: 5rem;
+	z-index: 4;
+}
+
+.Alert {
+	&__title {
+		font-size: 2rem;
+	}
+
+	&__icon {
+		cursor: pointer;
+		position: absolute;
+		top: 50%;
+		right: 2rem;
+		transform: translateY(-50%);
+	}
+}

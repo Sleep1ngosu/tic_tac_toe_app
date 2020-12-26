@@ -1,0 +1,142 @@
+.room__wrapper {
+	display: flex;
+	// justify-content: space-between;
+	height: 8rem;
+	width: 100%;
+	border-bottom: 0.2rem solid #888888;
+	background-color: rgb(182, 159, 159);
+	cursor: default;
+}
+
+.room {
+	&__title {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		width: 15rem;
+		height: 100%;
+		border-right: 0.1rem solid black;
+
+		&__host,
+		&__username {
+			font-size: 1.7rem;
+			display: flex;
+			justify-content: center;
+			width: 100%;
+			height: 50%;
+		}
+		&__host {
+			align-items: flex-end;
+			color: rgb(68, 54, 54);
+			font-weight: bold;
+		}
+
+		&__username {
+			align-items: center;
+			color: rgb(215, 255, 163);
+		}
+	}
+
+	&__players {
+		display: flex;
+		flex-direction: column;
+		width: 8rem;
+		height: 100%;
+		border-right: 0.1rem solid black;
+		font-size: 1.7rem;
+
+		&__text,
+		&__count {
+			display: flex;
+			justify-content: center;
+			height: 50%;
+		}
+
+		&__text {
+			align-items: flex-end;
+			color: rgb(68, 54, 54);
+			font-weight: bold;
+		}
+
+		&__count {
+			align-items: center;
+			color: rgb(215, 255, 163);
+		}
+	}
+
+	&__status {
+		display: flex;
+		flex-direction: column;
+		width: 12rem;
+		height: 100%;
+		border-right: 0.1rem solid black;
+
+		&__text,
+		&__status {
+			display: flex;
+			justify-content: center;
+			height: 50%;
+			width: 100%;
+			font-size: 1.7rem;
+		}
+
+		&__text {
+			align-items: flex-end;
+			color: rgb(68, 54, 54);
+			font-weight: bold;
+		}
+
+		&__status {
+			align-items: center;
+			color: rgb(215, 255, 163);
+		}
+	}
+
+	&__tags {
+		display: flex;
+		// flex-direction: column;
+		flex-wrap: wrap;
+		padding-top: 0.5rem;
+		height: 100%;
+		width: 25rem;
+		border-right: 0.1rem solid black;
+		font-size: 1.7rem;
+
+		&__text {
+			padding-left: 1rem;
+			padding-right: 1rem;
+			font-weight: bold;
+			color: rgb(68, 54, 54);
+		}
+
+		&__tags {
+			display: flex;
+			flex-wrap: wrap;
+			padding-top: 0.5rem;
+			flex: 1 1 auto;
+		}
+	}
+
+	&__join {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex: 1 1 auto;
+
+		&__button {
+			width: 7rem;
+			height: 2.5rem;
+			border: none;
+			color: #ffffff;
+			border-radius: 2rem;
+			background-color: #d168c8;
+			transition: 0.3s;
+			cursor: pointer;
+
+			&:hover {
+				transition: 0.3s;
+				background-color: #a7449e;
+			}
+		}
+	}
+}
