@@ -28,6 +28,7 @@ app.use('/api/room', require('./routes/api/room/startRoom'))
 app.use('/api/room', require('./routes/api/room/stopRoom'))
 app.use('/api/room', require('./routes/api/room/getRooms'))
 app.use('/api/room', require('./routes/api/room/getRoom'))
+app.use('/api/room', require('./routes/api/room/getRoomsByTag'))
 app.use('/api', require('./routes/api/room/getTags'))
 
 server.listen(PORT, () => {

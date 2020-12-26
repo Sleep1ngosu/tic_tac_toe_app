@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import './Popup.scss'
 import { showPopup, hidePopup } from '../../../actions/popup'
+import { removeBlocker } from '../../../actions/blocker'
 import TagsInput from 'react-tagsinput'
 import 'react-tagsinput/react-tagsinput.css'
 
@@ -24,6 +25,8 @@ const Popup = (props) => {
 	const onSubmit = (e, title, tags) => {
 		e.preventDefault()
 		props.onSubmit(e, title, tags)
+		props.hidePopup()
+		props.removeBlocker()
 	}
 
 	const tagsOnChange = (tags, currentValue) => {
@@ -48,14 +51,6 @@ const Popup = (props) => {
 					value={formData.title}
 					onChange={(e) => onChange(e)}
 				></input>
-				{/* <input
-					className="lobby__popup__body__input"
-					type="text"
-					placeholder="tags (start with #)"
-					name="tags"
-					value={formData.tags}
-					onChange={(e) => onChange(e)}
-				></input> */}
 				<div className="lobby__popup__body__tags">
 					<span className="lobby__popup__body__tags__text">
 						Tags (max count: 5, max length: 5, for adding press
@@ -85,4 +80,4 @@ const mapStateToProps = (state) => {
 	}
 }
 
-export default connect(mapStateToProps)(Popup)
+export default connect(mapStateToProps, { hidePopup, removeBlocker })(Popup)

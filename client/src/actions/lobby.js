@@ -58,3 +58,20 @@ export const joinGame = (username, id) => async (dispatch) => {
 		return false
 	}
 }
+
+export const leaveGame = (username, id) => async (dispatch) => {
+	try {
+		const URI = `http://localhost:5000/api/room/leave_room`
+		const body = {
+			username,
+			id,
+		}
+		const response = await axios.put(URI, body)
+		dispatch(setJoined(''))
+		dispatch(clearRoom())
+		return response
+	} catch (err) {
+		console.log(err.response)
+		return false
+	}
+}

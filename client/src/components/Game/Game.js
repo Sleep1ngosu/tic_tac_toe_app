@@ -1,10 +1,13 @@
 import React, { Fragment, useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import './Game.scss'
+import { Redirect } from 'react-router-dom'
 import Board from './Board/Board'
 import io from 'socket.io-client'
 import { getPlayers } from '../../api/getPlayers'
 import { setIndex, setActive, setField, setSymbol } from '../../actions/game'
+import { leaveGame } from '../../actions/lobby'
+import { DesktopWindowsOutlined } from '@material-ui/icons'
 
 let socket
 
@@ -19,6 +22,7 @@ const Game = (props) => {
 		active: 0,
 		roomField: [].fill(''),
 	})
+	let [isLeft, setLeft] = useState(false)
 
 	useEffect(() => {
 		socket = io('http://localhost:5000', {
@@ -42,6 +46,9 @@ const Game = (props) => {
 			}
 		})
 	}, [])
+	if (isLeft) {
+		return <Redirect to="/lobby" />
+	}
 
 	let gamePlayers = []
 	if (players) {
@@ -68,8 +75,21 @@ const Game = (props) => {
 		styleWinner = { display: 'none' }
 	}
 
+	const onLeave = async (e) => {
+		e.preventDefault()
+		const response = await props.leaveGame(props.username, props.joined)
+		setLeft(true)
+	}
+
 	return (
 		<div className="game__wrapper">
+			<button
+				onClick={(e) => onLeave(e)}
+				className="game__leave"
+				type="button"
+			>
+				Leave
+			</button>
 			<div style={styleWinner} className="game__active">
 				<span className="game__active__active">WINNER:</span>
 				<span className="game__active__username">{props.winner}</span>
@@ -111,4 +131,5 @@ export default connect(mapStateToProps, {
 	setActive,
 	setField,
 	setSymbol,
+	leaveGame,
 })(Game)

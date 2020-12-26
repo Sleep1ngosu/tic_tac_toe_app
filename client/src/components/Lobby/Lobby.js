@@ -12,7 +12,10 @@ import { showPopup, hidePopup } from '../../actions/popup'
 import Alert from '../Alert/Alert'
 // import socket from '../../socket'
 import { getAllRooms } from '../../api/getAllRooms'
+import { getRoomsByTag } from '../../api/getRoomsByTag'
+import TagsInput from 'react-tagsinput'
 import Popup from './Popup/Popup'
+import SearchIcon from '@material-ui/icons/Search'
 
 let socket
 
@@ -23,6 +26,10 @@ const Lobby = (props) => {
 		title: '',
 		tags: [],
 	})
+
+	let [searchRooms, setSearchRooms] = useState(null)
+
+	let [tags, setTags] = useState([])
 
 	useEffect(() => {
 		;(async () => {
@@ -36,9 +43,11 @@ const Lobby = (props) => {
 			transports: ['websocket', 'polling'],
 		})
 		socket.emit('message', 'Hello server!')
-		socket.on('getRooms', (dbrooms) => {
-			setRooms(dbrooms)
-		})
+		if (!searchRooms) {
+			socket.on('getRooms', (dbrooms) => {
+				setRooms(dbrooms)
+			})
+		}
 	}, [])
 	if (!props.isAuthenticated) {
 		return <Redirect to="/login" />
@@ -73,7 +82,20 @@ const Lobby = (props) => {
 		props.removeBlocker()
 	}
 
-	let roomsList = rooms.map((e, i) => {
+	const tagsOnChange = async (tags, currentValue) => {
+		if (currentValue[0].length <= 5) {
+			setTags(tags)
+		}
+		// console.log(tags)
+		if (tags.length === 0) {
+			setSearchRooms(null)
+		} else {
+			const rooms = await getRoomsByTag(tags)
+			setSearchRooms(rooms.data)
+		}
+	}
+	let roomsList
+	roomsList = rooms.map((e, i) => {
 		return (
 			<Room
 				key={`lobby__room__${i}`}
@@ -86,6 +108,22 @@ const Lobby = (props) => {
 		)
 	})
 
+	let searchRoomsList
+	if (searchRooms) {
+		searchRoomsList = searchRooms.map((e, i) => {
+			return (
+				<Room
+					key={`lobby__searchRoom__${i}`}
+					players={e.players}
+					isActive={e.isActive}
+					id={e.id}
+					title={e.title}
+					tags={e.tags}
+				/>
+			)
+		})
+	}
+
 	let blockerStyle
 	props.isShow
 		? (blockerStyle = { display: 'block' })
@@ -96,6 +134,18 @@ const Lobby = (props) => {
 			<Popup
 				onSubmit={(e, title, tags) => onClickNewGame(e, title, tags)}
 			/>
+			<div className="search">
+				<TagsInput
+					value={tags}
+					onChange={tagsOnChange}
+					maxTags={5}
+					onlyUnique={true}
+					className="search__input"
+				/>
+				<div className="search__icon">
+					<SearchIcon />
+				</div>
+			</div>
 			<div
 				onClick={onClickBlocker}
 				style={blockerStyle}
@@ -108,7 +158,23 @@ const Lobby = (props) => {
 						<span className="lobby__header__username__name">
 							user: {props.username}
 						</span>
-
+						<div className="lobby__header__search">
+							{/* <input
+								className="lobby__header__search__input"
+								type="text"
+								placeholder="search by tags"
+							></input> */}
+							{/* <TagsInput
+								value={tags}
+								onChange={tagsOnChange}
+								maxTags={5}
+								onlyUnique={true}
+								className="lobby__header__search__input"
+							/> */}
+							{/* <button className="lobby__header__search__button">
+								search
+							</button> */}
+						</div>
 						<button
 							onClick={props.logout}
 							className="lobby__header__username__logout"
@@ -126,7 +192,9 @@ const Lobby = (props) => {
 						</button>
 					</div>
 				</div>
-				<div className="lobby__body">{roomsList}</div>
+				<div className="lobby__body">
+					{!searchRooms ? roomsList : searchRoomsList}
+				</div>
 			</div>
 		</Fragment>
 	)
