@@ -5,6 +5,7 @@ const PORT = process.env.PORT || 5000
 const connectDB = require('./config/db')
 const socket = require('./sockets/socket')
 const cors = require('cors')
+const path = require('path')
 const io = require('socket.io')(server, {
 	transports: ['websocket', 'polling'],
 })
@@ -30,6 +31,14 @@ app.use('/api/room', require('./routes/api/room/getRooms'))
 app.use('/api/room', require('./routes/api/room/getRoom'))
 app.use('/api/room', require('./routes/api/room/getRoomsByTag'))
 app.use('/api', require('./routes/api/room/getTags'))
+
+if (process.env.NODE_ENV === 'production') {
+	app.use(express.static('client/build'))
+
+	app.get('*', (req, res) => {
+		res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
+	})
+}
 
 server.listen(PORT, () => {
 	console.log(`server is up on ${PORT}`)
